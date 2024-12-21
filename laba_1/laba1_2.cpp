@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdio>
 class Book {
 private:
     std::string author;
@@ -12,7 +13,7 @@ public:
         : author(author), title(title), type(type) {
         // Проверка на пустые значения
         if (author.empty() || title.empty()) {
-            throw std::invalid_argument("Имя автора и название книги не могут быть пустыми.");
+            throw std::invalid_argument("The author's name and the book title cannot be empty.");
         }
     }
     // Метод для получения типа книги
@@ -21,7 +22,7 @@ public:
     }
     // Метод для отображения информации о книге
     void display() const {
-        std::cout << "Автор: " << author << ", Название: " << title << ", Тип: " << type << std::endl;
+        std::cout << "Author: " << author << ", Name: " << title << ", Type: " << type << std::endl;
     }
 };
 class Library {
@@ -35,10 +36,10 @@ public:
     // Метод для отображения всех книг в библиотеке
     void displayBooks() const {
         if (books.empty()) {
-            std::cout << "Библиотека пуста." << std::endl;
+            std::cout << "The library is empty." << std::endl;
             return;
         }
-        std::cout << "Книги в библиотеке:" << std::endl;
+        std::cout << "Books in the library:" << std::endl;
         for (const auto& book : books) {
             book.display();
         }
@@ -49,28 +50,28 @@ public:
         int technicalCount = 0;
         // Подсчет количества книг каждого типа
         for (const auto& book : books) {
-            if (book.getType() == "Художественная") {
+            if (book.getType() == "Artistic") {
                 artisticCount++;
-            } else if (book.getType() == "Техническая") {
+            } else if (book.getType() == "Technical") {
                 technicalCount++;
             }
         }
         // Использование switch для вывода результатов
-        std::cout << "Количество книг по типу:" << std::endl;
+        std::cout << "Number of books by type:" << std::endl;
         switch (artisticCount) {
             case 0:
-                std::cout << "Художественная литература: Нет книг" << std::endl;
+                std::cout << "Artistic literature: No books" << std::endl;
                 break;
             default:
-                std::cout << "Художественная литература: " << artisticCount << " книг" << std::endl;
+                std::cout << "Artistic literature: " << artisticCount << " books" << std::endl;
                 break;
         }
         switch (technicalCount) {
             case 0:
-                std::cout << "Техническая литература: Нет книг" << std::endl;
+                std::cout << "Technical literature: No books" << std::endl;
                 break;
             default:
-                std::cout << "Техническая литература: " << technicalCount << " книг" << std::endl;
+                std::cout << "Technical literature: " << technicalCount << " books" << std::endl;
                 break;
         }
     }
@@ -79,29 +80,29 @@ int main() {
     Library library;
     std::string author, title, type;
     while (true) {
-        std::cout << "Введите имя автора (или 'exit' для выхода): ";
+        std::cout << "Enter the author's name (or 'exit'): ";
         getline(std::cin, author);
         if (author == "exit") break;
-        std::cout << "Введите название книги: ";
+        std::cout << "Enter the name of the book: ";
         getline(std::cin, title);
         if (title.empty()) continue; // Повторить ввод, если название пустое
 
-        std::cout << "Введите тип книги (Художественная/Техническая): ";
+        std::cout << "Enter the type of book (Artistic/Technical): ";
         getline(std::cin, type);
-        if (type != "Художественная" && type != "Техническая") {
-            std::cout << "Неверный тип книги. Попробуйте снова." << std::endl;
+        if (type != "Artistic" && type != "Technical") {
+            std::cout << "Incorrect book type. Try again." << std::endl;
             continue; // Повторить ввод, если тип неверный
         }
         try {
             // Добавление книги в библиотеку
             library.addBook(Book(author, title, type));
         } catch (const std::exception& e) {
-            std::cerr << "Ошибка: " << e.what() << std::endl;
+            std::cerr << "Error: " << e.what() << std::endl;
         }
     }
     // Отображение всех книг
     library.displayBooks();
     // Подсчет и вывод количества книг по типу
     library.countBooksByType();
-    return 0;
+    system("pause");
 }

@@ -1,14 +1,15 @@
 #include <iostream>
+#include <cstdio>
 
 int main() {
     int n;
 
-    std::cout << "Введите количество элементов в массиве: ";
+    std::cout << "Enter the number of elements in the array: ";
     std::cin >> n;
 
     // Проверка на корректность ввода
     if (n <= 0) {
-        std::cout << "Количество элементов должно быть положительным." << std::endl;
+        std::cout << "The number of elements must be positive." << std::endl;
         return 1;
     }
 
@@ -17,23 +18,23 @@ int main() {
 
     // Заполнение массива
     for (int i = 0; i < n; ++i) {
-        std::cout << "Введите элемент " << i + 1 << ": ";
+        std::cout << "Enter the element " << i + 1 << ": ";
         std::cin >> array[i];
     }
 
     // Вывод содержимого массива и адресов
-    std::cout << "\nСодержимое массива:" << std::endl;
+    std::cout << "\nArray Contents:" << std::endl;
     for (int i = 0; i < n; ++i) {
-        std::cout << "Элемент [" << i << "] = " << array[i] 
-                  << ", Адрес: " << &array[i]
-                  << ", Расстояние от начала массива: " << (&array[i] - array) << std::endl;
+        std::cout << "Element [" << i << "] = " << array[i] 
+                  << ", Address: " << &array[i]
+                  << ", Distance from the beginning of the array: " << (&array[i] - array) << std::endl;
     }
 
     // Адрес начала массива
-    std::cout << "\nАдрес начала массива: " << array << std::endl;
+    std::cout << "\nAddress of the beginning of the array: " << array << std::endl;
 
     // Освобождение выделенной памяти
     delete[] array;
 
-    return 0;
+    system("pause");
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <cstdio>
 
 // Базовый класс - транспортное средство
 class Vehicle {
@@ -74,5 +75,5 @@ int main() {
         vehicle->info();
     }
 
-    return 0;
+    system("pause");
 }

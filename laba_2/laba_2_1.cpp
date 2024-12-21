@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdio>
 
 using namespace std;
 
@@ -12,15 +13,15 @@ public:
     Publication(string t = "", float p = 0.0) : title(t), price(p) {}
 
     virtual void getdata() {
-        cout << "Введите название публикации: ";
+        cout << "Enter the title of the publication: ";
         getline(cin, title);
-        cout << "Введите цену публикации: ";
+        cout << "Enter the publication price: ";
         cin >> price;
         cin.ignore(); // игнорируем символ новой строки после ввода цены
     }
 
     virtual void putdata() const {
-        cout << "Название: " << title << ", Цена: " << price << endl;
+        cout << "title: " << title << ", price: " << price << endl;
     }
 };
 
@@ -33,14 +34,14 @@ public:
 
     void getdata() override {
         Publication::getdata(); // Получаем данные из родительского класса
-        cout << "Введите количество страниц в книге: ";
+        cout << "Enter the number of pages in the book: ";
         cin >> num_pages;
         cin.ignore(); // игнорируем символ новой строки
     }
 
     void putdata() const override {
         Publication::putdata(); // Выводим данные из родительского класса
-        cout << "Количество страниц: " << num_pages << endl;
+        cout << "number of pages: " << num_pages << endl;
     }
 };
 
@@ -53,14 +54,14 @@ public:
 
     void getdata() override {
         Publication::getdata(); // Получаем данные из родительского класса
-        cout << "Введите время записи книги в минутах: ";
+        cout << "Enter the book recording time in minutes: ";
         cin >> duration;
         cin.ignore(); // игнорируем символ новой строки
     }
 
     void putdata() const override {
         Publication::putdata(); // Выводим данные из родительского класса
-        cout << "Время записи: " << duration << " минут" << endl;
+        cout << "recording time: " << duration << " minutes" << endl;
     }
 };
 
@@ -73,5 +74,5 @@ int main() {
     audio.getdata();
     audio.putdata();
 
-    return 0;
+    system("pause");
 }

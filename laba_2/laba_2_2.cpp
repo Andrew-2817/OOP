@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdio>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ public:
 
     void getSalesData() {
         for (int i = 0; i < 3; ++i) {
-            cout << "Введите общую стоимость проданных книг за месяц " << (i + 1) << ": ";
+            cout << "Enter the total cost of books sold per month " << (i + 1) << ": ";
             cin >> salesData[i];
         }
         cin.ignore(); // Игнорируем символ новой строки после ввода
@@ -24,7 +25,7 @@ public:
 
     void putSalesData() const {
         for (int i = 0; i < 3; ++i) {
-            cout << "Продажи за месяц " << (i + 1) << ": " << salesData[i] << endl;
+            cout << "Monthly sales " << (i + 1) << ": " << salesData[i] << endl;
         }
     }
 };
@@ -38,15 +39,15 @@ public:
     Publication(string t = "", float p = 0.0) : title(t), price(p) {}
 
     virtual void getdata() {
-        cout << "Введите название публикации: ";
+        cout << "Enter the title of the publication: ";
         getline(cin, title);
-        cout << "Введите цену публикации: ";
+        cout << "Enter the publication price: ";
         cin >> price;
         cin.ignore(); // Игнорируем символ новой строки после ввода цены
     }
 
     virtual void putdata() const {
-        cout << "Название: " << title << ", Цена: " << price << endl;
+        cout << "Name: " << title << ", Price: " << price << endl;
     }
 };
 
@@ -60,7 +61,7 @@ public:
 
     void getdata() override {
         Publication::getdata(); // Получаем данные из родительского класса
-        cout << "Введите количество страниц в книге: ";
+        cout << "Enter the number of pages in the book: ";
         cin >> num_pages;
         cin.ignore(); // Игнорируем символ новой строки
         getSalesData(); // Получаем данные о продажах
@@ -68,7 +69,7 @@ public:
 
     void putdata() const override {
         Publication::putdata(); // Выводим данные из родительского класса
-        cout << "Количество страниц: " << num_pages << endl;
+        cout << "Number of pages: " << num_pages << endl;
         putSalesData(); // Выводим данные о продажах
     }
 };
@@ -83,7 +84,7 @@ public:
 
     void getdata() override {
         Publication::getdata(); // Получаем данные из родительского класса
-        cout << "Введите время записи книги в минутах: ";
+        cout << "Enter the book recording time in minutes: ";
         cin >> duration;
         cin.ignore(); // Игнорируем символ новой строки
         getSalesData(); // Получаем данные о продажах
@@ -91,7 +92,7 @@ public:
 
     void putdata() const override {
         Publication::putdata(); // Выводим данные из родительского класса
-        cout << "Время записи: " << duration << " минут" << endl;
+        cout << "recording time: " << duration << " minutes" << endl;
         putSalesData(); // Выводим данные о продажах
     }
 };
@@ -105,5 +106,5 @@ int main() {
     audio.getdata();
     audio.putdata();
 
-    return 0;
+    system("pause");
 }

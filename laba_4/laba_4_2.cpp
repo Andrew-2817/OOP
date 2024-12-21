@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <memory>
 #include <vector>
+#include <cstdio>
 
 // Базовый класс для ошибок
 class Error {
@@ -13,7 +14,7 @@ public:
 class PointerError : public Error {
 public:
     const char* what() const noexcept override {
-        return "Ошибка: некорректный указатель!";
+        return "Error: incorrect pointer!";
     }
 };
 
@@ -21,7 +22,7 @@ public:
 class ListError : public Error {
 public:
     const char* what() const noexcept override {
-        return "Ошибка: проблема с работой со списком!";
+        return "Error: problem with working with the list!";
     }
 };
 
@@ -29,7 +30,7 @@ public:
 class InvalidIndexError : public Error {
 public:
     const char* what() const noexcept override {
-        return "Ошибка: недопустимый индекс!";
+        return "Error: invalid index!";
     }
 };
 
@@ -37,7 +38,7 @@ public:
 class ListOverflowError : public Error {
 public:
     const char* what() const noexcept override {
-        return "Ошибка: список переполнен!";
+        return "Error: the list is full!";
     }
 };
 
@@ -45,7 +46,7 @@ public:
 class LogicError : public Error {
 public:
     const char* what() const noexcept override {
-        return "Ошибка: логическая ошибка в программе!";
+        return "Error: a logical error in the program!";
     }
 };
 
@@ -96,7 +97,7 @@ public:
 class Sample {
 public:
     void display() const {
-        std::cout << "Объект Sample" << std::endl;
+        std::cout << "Object Sample" << std::endl;
     }
 };
 
@@ -110,7 +111,7 @@ int main() {
     } catch (const Error& e) {
         std::cerr << e.what() << std::endl;
     } catch (const std::exception& e) {
-       std::cerr << "Стандартная ошибка: " << e.what() << std::endl;
+       std::cerr << "The standard error:: " << e.what() << std::endl;
     }
 
     try {
@@ -128,8 +129,8 @@ int main() {
     } catch (const Error& e) {
         std::cerr << e.what() << std::endl;
     } catch (const std::exception& e) {
-        std::cerr << "Стандартная ошибка: " << e.what() << std::endl;
+        std::cerr << "The standard error:: " << e.what() << std::endl;
     }
 
-    return 0;
+    system("pause");
 }

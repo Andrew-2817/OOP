@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <cstdio>
 
 // Базовый класс - деталь
 class Detail {
@@ -12,10 +13,16 @@ protected:
 
 public:
     virtual ~Detail() = default;
-    
+
     virtual void info() const {
         std::cout << "Detail: " << name << std::endl;
     }
+};
+
+// Производный класс - часть
+class Part : public Detail {
+public:
+    Part(const std::string& name) : Detail(name) {}
 };
 
 // Производный класс - сборка
@@ -51,10 +58,10 @@ int main() {
     std::vector<std::shared_ptr<Detail>> storage;
 
     // Создание деталей и сборок
-    addToStorage<Detail>(storage, "Gear");
+    addToStorage<Part>(storage, "Gear"); // Изменено на Part
     addToStorage<Assembly>(storage, "Engine Assembly");
-    addToStorage<Detail>(storage, "Bolt");
-    addToStorage<Detail>(storage, "Screw");
+    addToStorage<Part>(storage, "Bolt"); // Изменено на Part
+    addToStorage<Part>(storage, "Screw"); // Изменено на Part
 
     // Добавление компонентов в сборку
     dynamic_cast<Assembly*>(storage[1].get())->addComponent(storage[0]); // Adding Gear to Engine Assembly
@@ -67,5 +74,5 @@ int main() {
         item->info();
     }
 
-    return 0;
+    system("pause");
 }
